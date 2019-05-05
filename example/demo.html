@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>lqModal Demo</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">	
+		<h1>lqModal Demo</h1>
+		<div>
+			<button id="message-toggle" class="btn btn-outline-dark">message modal</button>	
+		</div>
+		<br />
+		<div>
+			<button id="dialog-toggle" class="btn btn-outline-dark">dialog modal</button>
+		</div>
+		<br />
+		<div>
+			<button class="input-toggle btn btn-outline-dark" data-type="text">input modal: text</button>
+			<button class="input-toggle btn btn-outline-dark" data-type="number">input modal: number</button>
+			<button class="input-toggle btn btn-outline-dark" data-type="email">input modal: email</button>
+			<button class="input-toggle btn btn-outline-dark" data-type="time">input modal: time</button>
+		</div>
+		<br />
+		<div id="info" class="alert alert-info"></div>
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="../lqModal.js"></script>
+	<script>
+$(function(){
+	var $info = $('#info').hide();
+
+	function showInfo(text) {
+		$info.slideUp('normal', function(){
+			$info.text(text).slideDown('normal');
+		});
+	}
+
+	$('#message-toggle').click(function(event) {
+		lqModal.message({
+			text: 'message modal: hello.',
+			ok: function(){
+				showInfo('message modal: clicked ok button');
+			},
+		});
+	});
+
+	$('#dialog-toggle').click(function(event) {
+		lqModal.dialog({
+			text: 'dialog modal: please select ok or cancel.',
+			ok: function(){
+				showInfo('dialog modal: clicked ok button');
+			},
+			cancel: function(){
+				showInfo('dialog modal: clicked cancel button');
+			},
+		});
+	});
+
+	$('.input-toggle').click(function(event) {
+		var type = $(this).data('type');
+		lqModal.input({
+			text: `input modal: please input a ${type}.`,
+			input: {
+				type: type,
+				placeholder: `请输入一个${type}`,
+			},
+			ok: function(){
+				showInfo(`input modal: get ${type}: ` + lqModal.getInput());
+			},
+			cancel: function(){
+				showInfo('input modal: clicked cancel button');
+			},
+		});
+	});
+	
+	lqModal.message('Hello! This is lqModal demo.');  //直接传入文本
+});
+	</script>
+</body>
+</html>
