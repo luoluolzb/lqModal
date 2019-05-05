@@ -1,17 +1,23 @@
 # lqModel
 
 ## 介绍
-这是一个可以快速使用boostrap模态框的工具，目前包含了三个模态框：信息框、操作确认框、信息输入框。
+这是一个可以快速使用boostrap模态框的js库，有了这个库在只需要一些简单的模态框时就比较方便了。
+目前包含了三个模态框：信息框、操作确认框、信息输入框。
 
 
 ## 使用要求
-1. `boostrap v4`
-2. `jquery`
+在导入`lqModal.js`之前需要一下调剂
+1. `boostrap v4` UI框架
+2. `jquery`库
 3. `boostrap`的`modal.js`插件，或者使用 `boostrap.min.js`
 
 
-## 使用方法
+## 使用例子
+你可以查看使用[例子](https://github.com/luoluolzb/lqModal/blob/master/example/demo.html). 
+也可以查看下面的说明文档
 
+
+## 参考文档
 ### 消息框
 只需要显示一些消息：
 ```javascript
