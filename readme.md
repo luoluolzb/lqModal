@@ -27,8 +27,9 @@ lqModal.message('Hello!');
 显示一些消息，并在用户点击确认按钮后做一些处理：
 ```javascript
 lqModal.message({
-	text: 'Hello!',
-	ok: function(event) {  //点击确定按钮
+	title: '提示消息',      //消息框标题(可选参数)
+	text: 'Hello!',        //消息文本(html格式文本)
+	ok: function(event) {  //点击确定按钮(可选参数)
 		console.log('you clicked ok button.');
 	},
 });
@@ -39,34 +40,35 @@ lqModal.message({
 显示一个操作询问，并在用户点击确认或取消按钮后做一些处理：
 ```javascript
 lqModal.dialog({
-	text: '你吃饭了没？',
-	ok: function(event) {  //点击确定按钮
+	title: '操作提示',          //对话框标题(可选参数)
+	text: '你吃饭了没？',       //对话框消息内容(html格式文本)
+	ok: function(event) {      //点击确定按钮(可选参数)
 		console.log('我吃了');
 	},
-	cancel: function(event) {  //点击取消按钮
+	cancel: function(event) {  //点击取消按钮(可选参数)
 		console.log('还没吃');
 	},
 });
 ```
-如果你只需要在处理确认或取消中的一个事件，另外一个可以函数可以省略（当然如果不需要任何处理，可以个函数都不写）。这规则在其他的模态框也适用。
 
 
 ### 信息输入框
 显示一个输入框，可以输入一些信息：
 ```javascript
 lqModal.input({
-	text: '输入你的邮箱：',
-	input: {   //输入框属性
-		type: 'email',  //输入框类型
-		placeholder: '请输入你的邮箱',
+	title: '输入信息',                    //输入框标题(可选参数)
+	text: '输入你的邮箱：',               //输入框消息内容(html格式文本)
+	input: {                             //input标签属性
+		type: 'email',                   //类型
+		placeholder: '请输入你的邮箱',    //提示文本(可选参数)
+		value: '',                       //内容(可选参数)
 	},
-	ok: function(event) {  //点击确定按钮
+	ok: function(event) {                //点击确定按钮(可选参数)
 		var email = lqModal.getInput();  //获取输入的内容
 		console.log('Your email is ' + email);
 	},
-	cancel: function(event) {  //点击取消按钮
+	cancel: function(event) {            //点击取消按钮(可选参数)
 		console.log('you clicked cancel button.');
 	},
 });
 ```
-

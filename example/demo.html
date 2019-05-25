@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="utf-8" />
 	<title>lqModal Demo</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
 		<div id="info" class="alert alert-info"></div>
 	</div>
 	
-	<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="../lqModal.js"></script>
 	<script>
@@ -45,7 +45,7 @@ $(function(){
 	$('#message-toggle').click(function(event) {
 		lqModal.message({
 			text: 'message modal: hello.',
-			ok: function(){
+			ok: function() {
 				showInfo('message modal: clicked ok button');
 			},
 		});
@@ -54,10 +54,10 @@ $(function(){
 	$('#dialog-toggle').click(function(event) {
 		lqModal.dialog({
 			text: 'dialog modal: please select ok or cancel.',
-			ok: function(){
+			ok: function() {
 				showInfo('dialog modal: clicked ok button');
 			},
-			cancel: function(){
+			cancel: function() {
 				showInfo('dialog modal: clicked cancel button');
 			},
 		});
@@ -71,10 +71,10 @@ $(function(){
 				type: type,
 				placeholder: `请输入一个${type}`,
 			},
-			ok: function(){
+			ok: function() {
 				showInfo(`input modal: get ${type}: ` + lqModal.getInput());
 			},
-			cancel: function(){
+			cancel: function() {
 				showInfo('input modal: clicked cancel button');
 			},
 		});

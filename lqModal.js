@@ -3,7 +3,7 @@
  * 此功能建立在jquery和bootstrap的模态框插件基础上
  * @author  luoluolzb
  * @version 2.0
- * @time    2019/5/5
+ * @time    2019/5/25
  */
 var lqModal = {};
 
@@ -15,7 +15,7 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">提示消息</h5>
+					<h5 class="modal-title"></h5>
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body"></div>
@@ -31,7 +31,7 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">操作提示</h5>
+					<h5 class="modal-title"></h5>
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body"></div>
@@ -48,7 +48,7 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">输入信息</h5>
+					<h5 class="modal-title"></h5>
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
@@ -85,17 +85,19 @@ $(function(){
 	 * @param  {Object} options 参数
 	 */
 	lqModal.message = function(options) {
-		// 如果只传入一个字符串则作为说明文本
+		// 如果只传入一个字符串则作为消息文本
 		if (typeof options === 'string') {
 			options = {
 				text: options,
 			};
 		}
 		options = $.extend({
-			text: '',            // 说明文本
-			ok: undefined,       // 点击'确定'按钮的回调函数
+			title: '提示消息',     // 消息框标题
+			text : '',            // 消息内容
+			ok   : undefined,     // 点击'确定'按钮的回调函数
 		}, options || {});
 
+		$message.find('.modal-title').html(options.title);
 		$message.find('.modal-body').html(options.text);
 		$message.find('.okBtn').off('click').on('click', options.ok);
 		$message.modal('show');
@@ -107,11 +109,13 @@ $(function(){
 	 */
 	lqModal.dialog = function(options) {
 		options = $.extend({
-			text: '',            // 说明文本
-			ok: undefined,       // 点击'确定'按钮的回调函数
-			cancel: undefined,   // 点击'取消'按钮的回调函数
+			title : '操作提示',    // 对话框标题
+			text  : '',           // 说明文本
+			ok    : undefined,    // 点击'确定'按钮的回调函数
+			cancel: undefined,    // 点击'取消'按钮的回调函数
 		}, options || {});
 
+		$dialog.find('.modal-title').html(options.title);
 		$dialog.find('.modal-body').html(options.text);
 		$dialog.find('.okBtn').off('click').on('click', options.ok);
 		$dialog.find('.cancelBtn').off('click').on('click', options.cancel);
@@ -124,16 +128,18 @@ $(function(){
 	 */
 	lqModal.input = function(options) {
 		options = $.extend({
-			text: '',            // 说明文本
-			ok: undefined,       // 点击'确定'按钮的回调函数
-			cancel: undefined,   // 点击'取消'按钮的回调函数
-			input: {             // 输入模态框中input元素属性
+			title : '输入信息',    // 输入框标题
+			text  : '',           // 说明文本
+			ok    : undefined,    // 点击'确定'按钮的回调函数
+			cancel: undefined,    // 点击'取消'按钮的回调函数
+			input : {             // 输入模态框中input元素属性
 				type: 'text',
 				value: '',
 				placeholder: '',
 			},
 		}, options || {});
 
+		$input.find('.modal-title').html(options.title);
 		$input.find('label').html(options.text);
 		$input.find('input').attr(options.input).val(options.input.value);
 		$input.find('.okBtn').off('click').on('click', options.ok);
